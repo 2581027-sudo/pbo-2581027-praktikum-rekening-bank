@@ -20,4 +20,28 @@ public class Rekening {
     public int getSaldo() {
         return saldo;
     }
+
+    public boolean setor(int jumlah) {
+        if (jumlah <= 0) {
+            return false;
+        }
+        saldo += jumlah;
+        return true;
+    }
+
+    public boolean tarik(int jumlah) {
+        if (jumlah <= 0 || jumlah > saldo) {
+            return false;
+        }
+        saldo -= jumlah;
+        return true;
+    }
+
+    public void cetakInfo() {
+        System.out.println(nomor + " | " + pemilik + " | " + formatRupiah(saldo));
+    }
+
+    private String formatRupiah(int angka) {
+        return "Rp" + String.format(java.util.Locale.US, "%,d", angka).replace(',', '.');
+    }
 }
